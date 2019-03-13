@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>必疯窝，你想看的攻略这里都有</title>
+    <link rel="shortcut icon" href="img/titleLogo.png"/>
+    <script src="js/vue.js"></script>
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/index.js"></script>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+</head>
+<body>
+    <div id="app">
+        <!--顶部栅栏-->
+        <el-row class="headBar">
+            <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
+            <!--导航栏-->
+            <el-col :span="12"><div class="grid-content bg-purple">
+                <el-menu
+                        :default-active="activeIndex"
+                        class="el-menu-demo"
+                        mode="horizontal"
+                        @select="handleSelect"
+                        active-text-color="#ffa602">
+                    <el-menu-item index="1" @click="toHome">首页</el-menu-item>
+                    <el-submenu index="2">
+                        <template slot="title">旅行商城</template>
+                        <el-menu-item index="2-1">自由行</el-menu-item>
+                        <el-menu-item index="2-2">跟团游</el-menu-item>
+                        <el-menu-item index="2-3">签证</el-menu-item>
+                        <el-menu-item index="2-3">保险</el-menu-item>
+                    </el-submenu>
+                    <el-menu-item index="3">攻略</el-menu-item>
+                    <el-menu-item index="4"><a class="block-a" href="http://www.mafengwo.cn/hotel/" target="_blank">酒店</a></el-menu-item>
+                </el-menu>
+            </div></el-col>
+            <el-col :span="4"><div class="grid-content bg-purple naviconBar">
+                <i class="fa fa-wechat"></i>
+                <i class="fa fa-weibo"></i>
+                <i class="fa fa-qq"></i>
+                <span><a href="#">登录</a></span>
+                <span>|</span>
+                <span><a href="#">注册</a></span>
+            </div></el-col>
+            <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
+        </el-row>
+
+        <!--走马灯一行的栅栏-->
+        <el-row class="secBar">
+            <el-col :span="4"><div class="grid-content bg-purple">
+
+            </div></el-col>
+            <el-col :span="5"><div class="grid-content bg-purple">
+                <!--推荐菜单选项开始-->
+                <div class="tuijianArea">
+                    <el-row>
+                        <el-col :span="23"><div class="grid-content tuijian tuijian1">海外冬季目的地精选<span><i class="el-icon-arrow-right"></i></span></div></el-col>
+                    </el-row>
+                    <el-row>
+                        <el-col :span="23"><div class="grid-content tuijian">国内冬季目的地推荐<span><i class="el-icon-arrow-right"></i></span></div></el-col>
+                    </el-row>
+                    <el-row>
+                        <el-col :span="23"><div class="grid-content tuijian">奔向海岛<span><i class="el-icon-arrow-right"></i></span></div></el-col>
+                    </el-row>
+                    <el-row>
+                        <el-col :span="23"><div class="grid-content tuijian">
+                            主题推荐<span><i class="el-icon-arrow-right"></i></span>
+                        </div></el-col>
+                    </el-row>
+                </div>
+                <!--推荐菜单选项结束-->
+                <!--搜索框开始-->
+                <el-row>
+                    <el-col :span="23">
+                        <div class="searchArea">
+                        <el-input
+                                placeholder="您想去哪儿？"
+                                v-model="searchInput"
+                                clearable>
+                            <i slot="prefix" class="el-input__icon el-icon-search"></i>
+                        </el-input>
+                        </div>
+                    </el-col>
+                </el-row>
+                <!--搜索框结束-->
+                <!--下载广告开始-->
+                <el-row>
+                    <el-col :span="8">
+                        <div class="adArea">
+                            <img src="img/titleLogo.png" alt="" draggable="false">
+                        </div>
+                    </el-col>
+                    <el-col :span="15">
+                        <div class="adArea adAreaText">
+                            <p><a href="#">下载必疯窝App</a></p>
+                            <span>iPhone版 | Android版</span>
+                        </div>
+                    </el-col>
+                </el-row>
+                <!--下载广告结束-->
+            </div></el-col>
+            <el-col :span="11"><div class="grid-content bg-purple">
+
+                <!--走马灯-->
+                <div class="block">
+                    <el-carousel height="340px">
+                        <!--<el-carousel-item v-for="item in zmdImgList">-->
+                            <!--<img v-lazy="item" alt="">-->
+                        <!--</el-carousel-item>-->
+                        <el-carousel-item>
+                            <img src="img/p1.jpeg" alt="" draggable="false" width="600px" height="400px">
+                        </el-carousel-item>
+                        <el-carousel-item>
+                            <img src="img/p2.jpeg" alt="" draggable="false" width="600px" height="400px">
+                        </el-carousel-item>
+                        <el-carousel-item>
+                            <img src="img/p3.jpeg" alt="" draggable="false" width="600px" height="400px">
+                        </el-carousel-item>
+                        <el-carousel-item>
+                            <img src="img/p4.jpeg" alt="" draggable="false" width="600px" height="400px">
+                        </el-carousel-item>
+                    </el-carousel>
+                </div>
+            </div></el-col>
+            <el-col :span="4"><div class="grid-content bg-purple">
+            </div></el-col>
+        </el-row>
+
+        <!--第三行栅栏-->
+        <el-row class="thirdBar">
+
+
+            <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
+            <!--第三行栅栏左边区域开始-->
+            <el-col :span="4"><div class="grid-content bg-purple">
+                <!--攻略导航标题区域-->
+                <el-row>
+                    <el-col :span="23">
+                        <div class="glTitle">
+                            <p>旅游攻略导航</p>
+                        </div>
+                    </el-col>
+                </el-row>
+
+                <!--地区选择区域-->
+                <el-row>
+                    <el-col :span="23">
+                        <div class="locationChoose">
+                                <div id="guonei">
+                                    <el-dropdown>
+  <span class="el-dropdown-link">
+    国内<i class="el-icon-arrow-down el-icon--right"></i>
+  </span>
+                                        <el-dropdown-menu slot="dropdown">
+                                            <el-dropdown-item>黄金糕</el-dropdown-item>
+                                            <el-dropdown-item>狮子头</el-dropdown-item>
+                                            <el-dropdown-item>螺蛳粉</el-dropdown-item>
+                                            <el-dropdown-item disabled>双皮奶</el-dropdown-item>
+                                            <el-dropdown-item divided>蚵仔煎</el-dropdown-item>
+                                        </el-dropdown-menu>
+                                    </el-dropdown>
+                                </div>
+
+                                <div id="guowai">
+                                    <el-dropdown>
+  <span class="el-dropdown-link">
+    国外<i class="el-icon-arrow-down el-icon--right"></i>
+  </span>
+                                        <el-dropdown-menu slot="dropdown">
+                                            <el-dropdown-item>黄金糕</el-dropdown-item>
+                                            <el-dropdown-item>狮子头</el-dropdown-item>
+                                            <el-dropdown-item>螺蛳粉</el-dropdown-item>
+                                            <el-dropdown-item disabled>双皮奶</el-dropdown-item>
+                                            <el-dropdown-item divided>蚵仔煎</el-dropdown-item>
+                                        </el-dropdown-menu>
+                                    </el-dropdown>
+                                </div>
+
+                            <div id="zhuti">
+                                <el-dropdown>
+  <span class="el-dropdown-link">
+    主题<i class="el-icon-arrow-down el-icon--right"></i>
+  </span>
+                                    <el-dropdown-menu slot="dropdown">
+                                        <el-dropdown-item>黄金糕</el-dropdown-item>
+                                        <el-dropdown-item>狮子头</el-dropdown-item>
+                                        <el-dropdown-item>螺蛳粉</el-dropdown-item>
+                                        <el-dropdown-item disabled>双皮奶</el-dropdown-item>
+                                        <el-dropdown-item divided>蚵仔煎</el-dropdown-item>
+                                    </el-dropdown-menu>
+                                </el-dropdown>
+                            </div>
+                            </div>
+
+
+                    </el-col>
+                </el-row>
+
+                <!--热门地区区域-->
+                <el-row>
+                    <el-col :span="23" v-for="(item,key) in hotdiquList" :key="key">
+                        <div class="paihang">
+                            <span>{{key+1}}</span>
+                            <span>{{item}}</span>
+                            <span v-if="key<=2">
+                                <i class=" fa fa-fire"></i>
+                            </span>
+                        </div>
+                    </el-col>
+                </el-row>
+
+            </div></el-col>
+            <!--第三行栅栏左边区域结束-->
+
+
+
+            <!--第三行栅栏右边区域开始-->
+            <el-col :span="12"><div class="grid-content bg-purple thirdBarRightArea" id="yuzhanwei">
+
+                <!--攻略展示标题区域-->
+                <el-row>
+                    <el-col :span="24">
+                        <div class="glListTitle">
+                            <h3>推荐攻略</h3>
+                        </div>
+                    </el-col>
+                </el-row>
+
+                <!--攻略列表区域开始-->
+                <el-row v-for="(glItem,key) in gonglueList" :key="key" >
+                    <a href="#">
+                    <el-col :span="24">
+                        <div class="glListArea">
+                            <!--作者-->
+                            <div class="author">
+                                <span><i class="fa fa-pencil-square-o"></i></span>
+                                <span>来自</span>
+                                <span>{{glItem.name}}</span>
+                                <span><i class="fa fa-location-arrow"></i></span>
+                                <span>{{glItem.location}}</span>
+                                <span><i class="fa fa-star"></i></span>
+                                <span>{{glItem.hot}}</span>
+                            </div>
+                            <!--标题-->
+                            <div class="titleArea">
+                                <h3>{{glItem.title}}</h3>
+                            </div>
+                            <!--内容-->
+                            <div class="articleArea">
+                                <div class="txtArea">
+                                    <span>
+                                        {{glItem.introduce}}
+                                    </span>
+                                </div>
+                                <div class="picArea">
+                                    <img :src="glItem.photo" alt="" width="250px" height="150px">
+                                </div>
+
+                            </div>
+                        </div>
+                    </el-col>
+                    </a>
+                </el-row>
+                <!--攻略列表区域结束-->
+
+                <!--分页开始-->
+                <div class="fenye">
+                    <el-button type="warning" round class="btn-pre">上一页</el-button>
+                    现在是第<span class="currentPage">1</span>页
+                    <el-button type="warning" round class="mybtn-next">下一页</el-button>
+                    共<span class="text-info span-count">8</span>条记录
+                </div>
+
+                <!--分页结束-->
+            </div></el-col>
+            <!--第三行栅栏右边区域结束-->
+            <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
+        </el-row>
+
+        <!--页脚-->
+        <footer>
+            <div class="foot-content">旅游资讯</br>
+                <a href="#">潮流攻略</a></br>
+                <a href="#">网站导航</a></br>
+                <a href="#">企业差旅</a></br>
+                <a href="#">航班时刻</a></br>
+            </div>
+            <div class="foot-content">加盟合作</br>
+                <a href="#">分销联盟</a></br>
+                <a href="#">广告业务</a></br>
+                <a href="#">友情链接</a></br>
+                <a href="#">代理合作</a></br>
+            </div>
+            <div class="foot-content">安全</br>
+                <a href="#">旅游保险</a></br>
+                <a href="#">用户协议</a></br>
+                <a href="#">安全中心</a></br>
+                <a href="#">在线客服</a></br>
+            </div>
+            <div class="foot-content">关于我们</br>
+                <a href="#">微信</a></br>
+                <a href="#">微博</a></br>
+                <a href="#">论坛</a></br>
+            </div>
+            <div class="copyright">
+                <a href="#">© 2018 bifengwo 必疯窝</a></br>
+                <a href="#">All rights reserved. 沪ICP备888888号</a></br>
+            </div>
+        </footer>
+
+
+    </div>
+
+    <script>
+
+
+        new Vue({
+            el:"#app",
+            data:function () {
+                return{
+                    activeIndex: '1',
+                    zmdImgList:['img/p1.jpeg',
+                                'img/p2.jpeg',
+                                'img/p3.jpeg'],
+                    searchInput:'',
+                    hotdiquList:['北京','深圳','上海','重庆','武汉','石家庄','香港','台湾','桂林','杭州','青海','厦门','海南','韩国','日本'],
+                    gonglueList:[
+                        {
+                            hot: 323,
+                            id:1,
+                            introduce:'成都的街头走一走，闻到的，不是火锅味儿那一定就是烤肉香。久未回城之后我们做的第一件事儿，不是回家，而是闻香寻肉。醉西昌鸿云店在二环边上，距离成都东站不到...',
+                            location:'成都',
+                            name:'张三',
+                            photo:'img/cd.jpg',
+                            title:'食在成都，实在成都'
+                        },
+                        {
+                            hot: 3789,
+                            id:2,
+                            introduce:'大韩民国，简称韩国，位于东北亚，是一个新兴的发达国家。宪法领土范围为整个朝鲜半岛及附属岛屿，实际领土约占朝鲜半岛总面积的4/9。韩国位于亚洲 大陆东北朝鲜半岛南部，东、南、西三面环海',
+                            location:'韩国',
+                            name:'李四',
+                            photo:'img/hg.jpg',
+                            title:'旅遊 | 韩国：来到首尔吃啥哟？当然是韩烧呀！'
+                        },
+                        {
+                            hot: 666,
+                            id:3,
+                            introduce:'在北京生活久了，经常会发现这座城市一些有趣的地方。那些隐秘于世的道路、人事、建筑，画出这座被叫作“帝都”的城市另一面的气质。',
+                            location:'北京',
+                            name:'王五',
+                            photo:'img/bj.jpg',
+                            title:'大小北京 || 北京独家散步路线'
+                        },
+                        {
+                            hot: 259,
+                            id:4,
+                            introduce:'如果你是一个匆匆游客，想在有限的时间走遍大上海最众人皆知的地方，那就去这些地方吧~它们都是上海的标志，也是提及上海大家脱口而出的景点！',
+                            location:'上海',
+                            name:'张三',
+                            photo:'img/sh.jpg',
+                            title:'上海必打卡！提到上海就能想起的经典景点'
+                        }
+                    ]
+                }
+            },
+            methods:{
+                //监听导航栏
+                handleSelect:function(key, keyPath){
+                    console.log(key, keyPath);
+                },
+
+
+
+                //toHome
+                toHome:function () {
+                    window.location.href="index.html";
+                }
+
+
+            }
+        });
+    </script>
+
+</body>
+</html>
